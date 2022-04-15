@@ -8,11 +8,13 @@ import { StatisticPage } from './views/StatisticPage'
 
 export default function App() {
   return (
-    <section className="app container">
+    <section className="app-container container flex flex-col">
       <AppHeader />
-      <HomePage />
-      <ContactApp />
-      <StatisticPage />
+      <main className="flex-1">
+        {/* <HomePage /> */}
+        {/* <ContactApp /> */}
+        <StatisticPage />
+      </main>
       <AppFooter />
     </section>
   )

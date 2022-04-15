@@ -3,5 +3,6 @@
 @import './base/util.css';
 
 /** VIEWS **/
+@import './views/app.css';
 
 /** COMPONENTS **/
