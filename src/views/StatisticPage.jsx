@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { LineChart } from '../components/charts/LineChart'
 import { bitcoinService } from '../services/bitcoin-service'
 
 export class StatisticPage extends Component {
@@ -16,6 +17,15 @@ export class StatisticPage extends Component {
   }
 
   render() {
-    return <div>StatisticPage</div>
+    const { marketPrice, confirmedTransactions } = this.state
+
+    return (
+      <div>
+        <section>{marketPrice && <LineChart data={marketPrice} />}</section>
+        <section>
+          {confirmedTransactions && <LineChart data={confirmedTransactions} />}
+        </section>
+      </div>
+    )
   }
 }
