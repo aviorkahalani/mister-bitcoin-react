@@ -17,7 +17,7 @@ export class ContactFilter extends Component {
     const { term } = this.state
 
     return (
-      <section>
+      <section className="py-3">
         <label htmlFor="term" className="form-label">
           Free Search
         </label>

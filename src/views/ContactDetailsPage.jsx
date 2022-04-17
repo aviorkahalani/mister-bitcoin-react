@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { contactService } from '../services/contact-service'
 
 export class ContactDetailsPage extends Component {
@@ -11,7 +12,7 @@ export class ContactDetailsPage extends Component {
   }
 
   loadContact = async () => {
-    const contact = await contactService.getContactById(this.props.contactId)
+    const contact = await contactService.getContactById(this.props.match.params.id)
     this.setState({ contact })
   }
 
@@ -26,7 +27,7 @@ export class ContactDetailsPage extends Component {
           <img src={`https:robohash.org/${contact._id}?set=set5`} alt="" />
         </div>
 
-        <div className="contact__info">
+        <div className="contact__info flex flex-col gap-2">
           <div className="flex gap-2 items-center">
             <img src={require('../assets/img/name.png')} alt="" />
             <p>{contact.name}</p>
@@ -41,10 +42,9 @@ export class ContactDetailsPage extends Component {
           </div>
         </div>
 
-        <button onClick={() => this.props.onBack()} className="btn btn-secondary btn-back">
-          {' '}
+        <Link to="/contact" className="btn btn-secondary btn-back">
           back
-        </button>
+        </Link>
       </section>
     )
   }
