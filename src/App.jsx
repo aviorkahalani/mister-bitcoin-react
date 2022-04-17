@@ -8,6 +8,7 @@ import { HomePage } from './views/HomePage'
 import { StatisticPage } from './views/StatisticPage'
 import { ContactDetailsPage } from './views/ContactDetailsPage'
 import { ContactEdit } from './views/ContactEdit'
+import { SignupPage } from './views/SignupPage'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/contact/:id" component={ContactDetailsPage} />
             <Route path="/contact" component={ContactApp} />
             <Route path="/stats" component={StatisticPage} />
+            <Route path="/signup" component={SignupPage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </main>

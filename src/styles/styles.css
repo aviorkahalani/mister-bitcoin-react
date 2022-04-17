@@ -6,6 +6,8 @@
 @import './views/app.css';
 @import './views/home.css';
 @import './views/contact-details.css';
+@import './views/signup.css';
 
 /** COMPONENTS **/
 @import './components/contact-preview.css';
+@import './components/moves-list.css';

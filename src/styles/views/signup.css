@@ -1,0 +1,9 @@
+.signup {
+  font-size: 2em;
+}
+
+.signup img {
+  align-self: center;
+  width: 200px;
+  object-fit: cover;
+}

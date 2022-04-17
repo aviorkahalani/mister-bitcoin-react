@@ -16,6 +16,9 @@ function _AppHeader() {
         <NavLink className="link" activeClassName="active" exact to="/stats">
           Stats
         </NavLink>
+        <NavLink className="link" activeClassName="active" exact to="/signup">
+          Auth
+        </NavLink>
       </nav>
     </header>
   )

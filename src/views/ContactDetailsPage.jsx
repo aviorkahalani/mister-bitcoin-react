@@ -1,14 +1,20 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { contactService } from '../services/contact-service'
+import { userService } from '../services/user-service'
+
+import { TransferFund } from '../components/TransferFund'
+import { MovesList } from '../components/MovesList'
 
 export class ContactDetailsPage extends Component {
   state = {
     contact: null,
+    moves: null,
   }
 
   componentDidMount() {
     this.loadContact()
+    this.loadMoves()
   }
 
   loadContact = async () => {
@@ -16,8 +22,13 @@ export class ContactDetailsPage extends Component {
     this.setState({ contact })
   }
 
+  loadMoves = async () => {
+    const moves = await userService.getMovesByContact(this.props.match.params.id)
+    this.setState({ moves })
+  }
+
   render() {
-    const { contact } = this.state
+    const { contact, moves } = this.state
 
     if (!contact) return <div>Loading...</div>
 
@@ -50,6 +61,9 @@ export class ContactDetailsPage extends Component {
             back
           </Link>
         </div>
+
+        <TransferFund contact={contact} />
+        {moves && <MovesList title="Your Moves" moves={moves} />}
       </section>
     )
   }

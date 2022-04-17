@@ -1,0 +1,5 @@
+.moves-list .move {
+  background-color: #fff;
+  border-radius: 3px;
+  border: 2px solid var(--gray-200);
+}
