@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Store } from 'react-notifications-component'
 
 import { contactService } from '../services/contact-service'
+import { userService } from '../services/user-service'
 import { ContactList } from '../components/ContactList'
 import { ContactFilter } from '../components/ContactFilter'
 
@@ -10,10 +10,17 @@ export class ContactApp extends Component {
   state = {
     contacts: null,
     filterBy: null,
+    user: null,
   }
 
   componentDidMount() {
+    this.loadUser()
     this.loadContacts()
+  }
+
+  loadUser = async () => {
+    const user = await userService.getUser()
+    if (!user) this.props.history.push('/signup')
   }
 
   loadContacts = async () => {

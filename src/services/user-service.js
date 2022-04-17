@@ -9,8 +9,6 @@ export const userService = {
   getMovesByContact,
 }
 
-// let gUser
-
 async function getUser() {
   return utilService.loadFromStorage('user')
 }
@@ -43,9 +41,10 @@ async function addMove(contact, amount) {
     at: new Date(),
     amount,
   }
-  user.coins -= amount
 
+  user.coins -= amount
   user.moves.unshift(move)
+
   utilService.saveToStorage('user', user)
 }
 
