@@ -43,8 +43,8 @@ export class LineChart extends Component {
           {
             label: this.props.data.name,
             data: this.props.data.values.map((value) => value.y),
-            borderColor: this._randomColor(),
-            backgroundColor: this._randomColor(),
+            borderColor: '#6ee7b7',
+            backgroundColor: '#14b8a6',
           },
         ],
       },
@@ -59,10 +59,6 @@ export class LineChart extends Component {
         datasets: [],
       },
     }))
-  }
-
-  _randomColor = () => {
-    return Math.floor(Math.random() * 16777215).toString(16)
   }
 
   render() {

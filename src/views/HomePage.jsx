@@ -31,7 +31,7 @@ export class HomePage extends Component {
     if (!user) return <div>Loading...</div>
 
     return (
-      <section className="home p-4 flex flex-col gap-1">
+      <section className="home py-4 flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <img src={require('../assets/img/profile.png')} alt="" />
           <p>
