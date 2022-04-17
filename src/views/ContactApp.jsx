@@ -32,7 +32,7 @@ export class ContactApp extends Component {
     return (
       <section className="contact-app ">
         <ContactFilter onChangeFilter={this.onChangeFilter} />
-        <Link to="/contact/edit" className="btn btn-primary">
+        <Link to="/contact/edit" className="btn btn-add">
           add contact
         </Link>
         <ContactList contacts={contacts} />

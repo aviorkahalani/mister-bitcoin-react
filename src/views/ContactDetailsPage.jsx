@@ -42,9 +42,14 @@ export class ContactDetailsPage extends Component {
           </div>
         </div>
 
-        <Link to="/contact" className="btn btn-secondary btn-back">
-          back
-        </Link>
+        <div className="btn-group">
+          <Link className="btn btn-primary" to={`/contact/edit/${contact._id}`}>
+            edit
+          </Link>
+          <Link to="/contact" className="btn btn-secondary btn-back">
+            back
+          </Link>
+        </div>
       </section>
     )
   }
