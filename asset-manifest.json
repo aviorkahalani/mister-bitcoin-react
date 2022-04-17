@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/mister-bitcoin/static/css/main.72611309.css",
+    "main.js": "/mister-bitcoin/static/js/main.54e89ead.js",
+    "static/media/Montserrat-Regular.ttf": "/mister-bitcoin/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
+    "static/media/Montserrat-Bold.ttf": "/mister-bitcoin/static/media/Montserrat-Bold.079ca05d3ded9bc107ab.ttf",
+    "static/media/PlayfairDisplay-Bold.ttf": "/mister-bitcoin/static/media/PlayfairDisplay-Bold.34a18e8fb1c1542162f5.ttf",
+    "static/media/PlayfairDisplay-Regular.ttf": "/mister-bitcoin/static/media/PlayfairDisplay-Regular.ab37fd8f8b17807ebb1e.ttf",
+    "static/media/Roboto-Medium.ttf": "/mister-bitcoin/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
+    "static/media/Roboto-Regular.ttf": "/mister-bitcoin/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/Roboto-Bold.ttf": "/mister-bitcoin/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
+    "static/media/bitcoin.png": "/mister-bitcoin/static/media/bitcoin.cb02a3b876fc26985ff5.png",
+    "static/media/Lato-Regular.ttf": "/mister-bitcoin/static/media/Lato-Regular.9919edff6283018571ad.ttf",
+    "static/media/Lato-Bold.ttf": "/mister-bitcoin/static/media/Lato-Bold.5dd5aa0269395f0ea927.ttf",
+    "static/media/profile.png": "/mister-bitcoin/static/media/profile.5faf09a7795d28bf5a2b.png",
+    "static/media/dollar.png": "/mister-bitcoin/static/media/dollar.62e176ef1fe323c8c293.png",
+    "static/media/phone.png": "/mister-bitcoin/static/media/phone.5debae2e5ced08733722.png",
+    "static/media/mail.png": "/mister-bitcoin/static/media/mail.2c378c9ee25927123f7d.png",
+    "static/media/name.png": "/mister-bitcoin/static/media/name.8a6654c6a607ea4b611e.png",
+    "index.html": "/mister-bitcoin/index.html",
+    "main.72611309.css.map": "/mister-bitcoin/static/css/main.72611309.css.map",
+    "main.54e89ead.js.map": "/mister-bitcoin/static/js/main.54e89ead.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.72611309.css",
+    "static/js/main.54e89ead.js"
+  ]
+}
