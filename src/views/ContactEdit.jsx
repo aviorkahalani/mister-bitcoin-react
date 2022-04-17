@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { contactService } from '../services/contact-service'
+import { Store } from 'react-notifications-component'
 
 export class ContactEdit extends Component {
   state = {
@@ -22,13 +23,45 @@ export class ContactEdit extends Component {
 
   onSaveContact = async (ev) => {
     ev.preventDefault()
-    await contactService.saveContact(this.state.contact)
-    this.props.history.push('/contact')
+    try {
+      await contactService.saveContact(this.state.contact)
+      Store.addNotification({
+        title: 'Contact saved successfully',
+        type: 'success',
+        insert: 'bottom',
+        container: 'bottom-left',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      })
+      this.props.history.push('/contact')
+    } catch (err) {
+      console.log('%c err ', 'background: #ffa69c', err)
+    }
   }
 
   onDeleteContact = async () => {
-    await contactService.deleteContact(this.state.contact._id)
-    this.props.history.push('/contact')
+    try {
+      await contactService.deleteContact(this.state.contact._id)
+      Store.addNotification({
+        title: 'Contact deleted successfully',
+        type: 'success',
+        insert: 'bottom',
+        container: 'bottom-left',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      })
+      this.props.history.push('/contact')
+    } catch (err) {
+      console.log('%c err ', 'background: #ffa69c', err)
+    }
   }
 
   inputRef = (elInput) => {

@@ -32,7 +32,7 @@ function signout() {
 async function addMove(contact, amount) {
   const user = await getUser()
   if (amount > user.coins) {
-    throw new Error('You cant transfer more than what you have.')
+    throw new Error('You can not transfer more than what you have.')
   }
 
   const move = {

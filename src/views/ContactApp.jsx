@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Store } from 'react-notifications-component'
 
 import { contactService } from '../services/contact-service'
 import { ContactList } from '../components/ContactList'

@@ -1,5 +1,7 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { ReactNotifications } from 'react-notifications-component'
 import './styles/styles.css'
+import 'react-notifications-component/dist/theme.css'
 
 import { AppHeader } from './components/AppHeader'
 import { ContactApp } from './views/ContactApp'
@@ -13,6 +15,7 @@ import { SignupPage } from './views/SignupPage'
 export default function App() {
   return (
     <Router>
+      <ReactNotifications />
       <section className="app-container container flex flex-col">
         <AppHeader />
         <main className="flex-1">
