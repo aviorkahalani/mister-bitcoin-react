@@ -1,0 +1,11 @@
+.contact-details .contact__img {
+  width: 200px;
+}
+
+.contact-details .contact__info img {
+  width: 30px;
+}
+
+.contact-details .btn-back {
+  align-self: flex-start;
+}

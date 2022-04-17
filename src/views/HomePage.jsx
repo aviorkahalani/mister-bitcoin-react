@@ -31,11 +31,22 @@ export class HomePage extends Component {
     if (!user) return <div>Loading...</div>
 
     return (
-      <div>
-        <h1>HOMEPAGE</h1>
-        <pre>{JSON.stringify(user, null, 2)}</pre>
-        <h2>{bitcoinRate}</h2>
-      </div>
+      <section className="home p-4 flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <img src={require('../assets/img/profile.png')} alt="" />
+          <p>
+            Hello <span className="fw-bold">{user.name}</span>
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <img src={require('../assets/img/dollar.png')} alt="" />
+          <p>Coins: {user.coins}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <img src={require('../assets/img/bitcoin.png')} alt="" />
+          <p>BTC: {bitcoinRate}</p>
+        </div>
+      </section>
     )
   }
 }

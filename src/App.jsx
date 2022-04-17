@@ -11,9 +11,9 @@ export default function App() {
     <section className="app-container container flex flex-col">
       <AppHeader />
       <main className="flex-1">
-        {/* <HomePage /> */}
+        <HomePage />
         {/* <ContactApp /> */}
-        <StatisticPage />
+        {/* <StatisticPage /> */}
       </main>
       <AppFooter />
     </section>

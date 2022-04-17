@@ -1,0 +1,12 @@
+.contact-preview {
+  cursor: pointer;
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.contact-preview:hover {
+  background-color: var(--teal-50);
+}
+
+.contact-preview img {
+  width: 100px;
+}
