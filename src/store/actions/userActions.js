@@ -3,7 +3,7 @@ import { userService } from '../../services/user-service'
 export function loadUser() {
   return async (dispatch) => {
     try {
-      const user = await userService.getUser()
+      const user = userService.getUser()
       dispatch({ type: 'SET_USER', user })
     } catch (err) {
       console.log('%c err ', 'background: #ffa69c', err)

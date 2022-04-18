@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { ReactNotifications } from 'react-notifications-component'
 import './styles/styles.css'
 import 'react-notifications-component/dist/theme.css'
@@ -11,6 +11,12 @@ import { StatisticPage } from './views/StatisticPage'
 import { ContactDetailsPage } from './views/ContactDetailsPage'
 import { ContactEdit } from './views/ContactEdit'
 import { SignupPage } from './views/SignupPage'
+import { userService } from './services/user-service'
+
+const PrivateRoute = (props) => {
+  const isAuth = userService.getUser()
+  return isAuth ? <Route {...props} /> : <Redirect to="/signup" />
+}
 
 export default function App() {
   return (
@@ -22,10 +28,10 @@ export default function App() {
           <Switch>
             <Route path="/contact/edit/:id?" component={ContactEdit} />
             <Route path="/contact/:id" component={ContactDetailsPage} />
-            <Route path="/contact" component={ContactApp} />
+            <PrivateRoute path="/contact" component={ContactApp} />
             <Route path="/stats" component={StatisticPage} />
             <Route path="/signup" component={SignupPage} />
-            <Route path="/" component={HomePage} />
+            <PrivateRoute path="/" component={HomePage} />
           </Switch>
         </main>
         <AppFooter />

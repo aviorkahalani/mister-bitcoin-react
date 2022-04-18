@@ -9,7 +9,7 @@ export const userService = {
   getMovesByContact,
 }
 
-async function getUser() {
+function getUser() {
   return utilService.loadFromStorage('user')
 }
 
@@ -28,7 +28,7 @@ function signout() {
 }
 
 async function addMove(contact, amount) {
-  const user = await getUser()
+  const user = getUser()
   if (amount > user.coins) {
     throw new Error('You can not transfer more than what you have.')
   }
@@ -50,11 +50,11 @@ async function addMove(contact, amount) {
 }
 
 async function getMoves() {
-  const user = await getUser()
+  const user = getUser()
   return user.moves
 }
 
 async function getMovesByContact(contactId) {
-  const user = await getUser()
+  const user = getUser()
   return user.moves.filter((move) => move.toId === contactId)
 }
