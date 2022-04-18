@@ -1,34 +1,36 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { contactService } from '../services/contact-service'
-import { userService } from '../services/user-service'
+import { connect } from 'react-redux'
+import { setMoves, addMove } from '../store/actions/userActions'
 
 import { TransferFund } from '../components/TransferFund'
 import { MovesList } from '../components/MovesList'
 
-export class ContactDetailsPage extends Component {
+class _ContactDetailsPage extends Component {
   state = {
     contact: null,
-    moves: null,
   }
 
   componentDidMount() {
     this.loadContact()
-    this.loadMoves()
   }
 
   loadContact = async () => {
     const contact = await contactService.getContactById(this.props.match.params.id)
-    this.setState({ contact })
+    this.setState({ contact }, () => {
+      this.props.setMoves(this.state.contact._id)
+      console.log('this.props', this.props)
+    })
   }
 
-  loadMoves = async () => {
-    const moves = await userService.getMovesByContact(this.props.match.params.id)
-    this.setState({ moves })
+  onAddMove = async (contact, amount) => {
+    await this.props.addMove(contact, amount)
   }
 
   render() {
-    const { contact, moves } = this.state
+    const { contact } = this.state
+    const { moves } = this.props
 
     if (!contact) return <div>Loading...</div>
 
@@ -62,9 +64,23 @@ export class ContactDetailsPage extends Component {
           </Link>
         </div>
 
-        <TransferFund contact={contact} />
+        <TransferFund contact={contact} onAddMove={this.onAddMove} />
         {moves && <MovesList title="Your Moves" moves={moves} />}
       </section>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { moves: state.userModule.moves }
+}
+
+const mapDispatchToProps = {
+  setMoves,
+  addMove,
+}
+
+export const ContactDetailsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_ContactDetailsPage)

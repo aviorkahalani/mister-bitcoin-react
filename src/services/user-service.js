@@ -46,6 +46,7 @@ async function addMove(contact, amount) {
   user.moves.unshift(move)
 
   utilService.saveToStorage('user', user)
+  return move
 }
 
 async function getMoves() {

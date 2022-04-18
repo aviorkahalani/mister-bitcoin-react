@@ -1,36 +1,29 @@
 import { Component } from 'react'
-import { userService } from '../services/user-service'
 import { bitcoinService } from '../services/bitcoin-service'
+import { connect } from 'react-redux'
+import { loadUser } from '../store/actions/userActions'
 
 import { MovesList } from '../components/MovesList'
 
-export class HomePage extends Component {
+class _HomePage extends Component {
   state = {
-    user: null,
     bitcoinRate: null,
   }
 
-  componentDidMount() {
-    this.loadUser()
-  }
-
-  loadUser = async () => {
-    const user = await userService.getUser()
-    if (!user) this.props.history.push('/signup')
-
-    this.setState({ user }, () => {
-      this.loadBitcoinRate()
-    })
+  async componentDidMount() {
+    await this.props.loadUser()
+    this.loadBitcoinRate()
   }
 
   loadBitcoinRate = async () => {
-    const { user } = this.state
+    const { user } = this.props
     const bitcoinRate = await bitcoinService.getRate(user.coins)
     this.setState({ bitcoinRate })
   }
 
   render() {
-    const { user, bitcoinRate } = this.state
+    const { bitcoinRate } = this.state
+    const { user } = this.props
 
     if (!user) return <div>Loading...</div>
 
@@ -58,3 +51,15 @@ export class HomePage extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userModule.user,
+  }
+}
+
+const mapDispatchToProps = {
+  loadUser,
+}
+
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)

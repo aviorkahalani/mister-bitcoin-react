@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import { contactService } from '../services/contact-service'
-import { Store } from 'react-notifications-component'
+import { connect } from 'react-redux'
+import { saveContact, removeContact } from '../store/actions/contactActions'
 
-export class ContactEdit extends Component {
+class _ContactEdit extends Component {
   state = {
     contact: null,
   }
@@ -24,19 +25,7 @@ export class ContactEdit extends Component {
   onSaveContact = async (ev) => {
     ev.preventDefault()
     try {
-      await contactService.saveContact(this.state.contact)
-      Store.addNotification({
-        title: 'Contact saved successfully',
-        type: 'success',
-        insert: 'bottom',
-        container: 'bottom-left',
-        animationIn: ['animate__animated', 'animate__fadeIn'],
-        animationOut: ['animate__animated', 'animate__fadeOut'],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      })
+      await this.props.saveContact(this.state.contact)
       this.props.history.push('/contact')
     } catch (err) {
       console.log('%c err ', 'background: #ffa69c', err)
@@ -45,19 +34,7 @@ export class ContactEdit extends Component {
 
   onDeleteContact = async () => {
     try {
-      await contactService.deleteContact(this.state.contact._id)
-      Store.addNotification({
-        title: 'Contact deleted successfully',
-        type: 'success',
-        insert: 'bottom',
-        container: 'bottom-left',
-        animationIn: ['animate__animated', 'animate__fadeIn'],
-        animationOut: ['animate__animated', 'animate__fadeOut'],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      })
+      await this.props.removeContact(this.state.contact._id)
       this.props.history.push('/contact')
     } catch (err) {
       console.log('%c err ', 'background: #ffa69c', err)
@@ -142,3 +119,16 @@ export class ContactEdit extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    contacts: state.contactModule.contacts,
+  }
+}
+
+const mapDispatchToProps = {
+  saveContact,
+  removeContact,
+}
+
+export const ContactEdit = connect(mapStateToProps, mapDispatchToProps)(_ContactEdit)

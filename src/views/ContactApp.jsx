@@ -1,39 +1,34 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { loadContacts, setFilterBy } from '../store/actions/contactActions'
 
-import { contactService } from '../services/contact-service'
-import { userService } from '../services/user-service'
+// import { userService } from '../services/user-service'
 import { ContactList } from '../components/ContactList'
 import { ContactFilter } from '../components/ContactFilter'
 
-export class ContactApp extends Component {
+class _ContactApp extends Component {
   state = {
-    contacts: null,
-    filterBy: null,
     user: null,
   }
 
   componentDidMount() {
-    this.loadUser()
-    this.loadContacts()
+    this.props.loadContacts()
+    // this.loadUser()
   }
 
-  loadUser = async () => {
-    const user = await userService.getUser()
-    if (!user) this.props.history.push('/signup')
-  }
-
-  loadContacts = async () => {
-    const contacts = await contactService.getContacts(this.state.filterBy)
-    this.setState({ contacts })
-  }
+  // loadUser = async () => {
+  //   const user = await userService.getUser()
+  //   if (!user) this.props.history.push('/signup')
+  // }
 
   onChangeFilter = (filterBy) => {
-    this.setState({ filterBy }, this.loadContacts)
+    this.props.setFilterBy(filterBy)
+    this.props.loadContacts()
   }
 
   render() {
-    const { contacts } = this.state
+    const { contacts } = this.props
 
     if (!contacts) return <div>Loading...</div>
 
@@ -48,3 +43,16 @@ export class ContactApp extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    contacts: state.contactModule.contacts,
+  }
+}
+
+const mapDispatchToProps = {
+  loadContacts,
+  setFilterBy,
+}
+
+export const ContactApp = connect(mapStateToProps, mapDispatchToProps)(_ContactApp)

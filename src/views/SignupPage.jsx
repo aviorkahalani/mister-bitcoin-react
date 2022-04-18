@@ -1,19 +1,14 @@
 import { Component } from 'react'
-import { userService } from '../services/user-service'
+import { connect } from 'react-redux'
+import { signout, signup, loadUser } from '../store/actions/userActions'
 
-export class SignupPage extends Component {
+class _SignupPage extends Component {
   state = {
     username: '',
-    user: null,
   }
 
   componentDidMount() {
-    this.loadUser()
-  }
-
-  loadUser = async () => {
-    const user = await userService.getUser()
-    this.setState({ user })
+    this.props.loadUser()
   }
 
   handleChange = ({ target }) => {
@@ -24,17 +19,17 @@ export class SignupPage extends Component {
 
   onSignup = async (ev) => {
     ev.preventDefault()
-    await userService.signup(this.state.username)
+    await this.props.signup(this.state.username)
     this.props.history.push('/')
   }
 
   onSignout = async () => {
-    userService.signout()
-    this.setState({ user: null })
+    this.props.signout()
   }
 
   render() {
-    const { username, user } = this.state
+    const { username } = this.state
+    const { user } = this.props
 
     if (user)
       return (
@@ -71,3 +66,17 @@ export class SignupPage extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userModule.user,
+  }
+}
+
+const mapDispatchToProps = {
+  loadUser,
+  signup,
+  signout,
+}
+
+export const SignupPage = connect(mapStateToProps, mapDispatchToProps)(_SignupPage)
