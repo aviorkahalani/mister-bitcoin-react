@@ -20,7 +20,6 @@ class _ContactDetailsPage extends Component {
     const contact = await contactService.getContactById(this.props.match.params.id)
     this.setState({ contact }, () => {
       this.props.setMoves(this.state.contact._id)
-      console.log('this.props', this.props)
     })
   }
 
